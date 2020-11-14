@@ -3,6 +3,8 @@
 Modern computer architecture is too complex to understand for students.
 So I create poor and naive architecture virtual machine in this repository.
 
+- Fixed length operation
+- All I/O is memory mapped.
 
 ## Decode Rule
 
