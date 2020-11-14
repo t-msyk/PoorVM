@@ -6,6 +6,7 @@ So I create poor and naive architecture virtual machine in this repository.
 
 ## Decode Rule
 
+```
 b0 b1 ... b21 b22 b23 b24 b25 b26 b27 b28 b29 b30 b31 b32 b33 ... b63
 ------------- --- ----------- ----------- ----------- ---------------
 ^             ^   ^           ^           ^           ^
@@ -35,11 +36,11 @@ b0 b1 ... b21 b22 b23 b24 b25 b26 b27 b28 b29 b30 b31 b32 b33 ... b63
      Binary Operation:
        for example, operation is subtraction then
          RX - RY -> RZ
-
      Unary Operation:
        for example, operation is store then
          RY -> memory[RZ]
        operation is load then
+```
          memory[RY] -> RZ
 
    There are 17 operations shown as bellow.
