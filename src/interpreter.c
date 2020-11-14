@@ -50,44 +50,44 @@ int interpreter_main ( char *fname ) {
       memory->cells[i++] = word;
       continue;
     // Arithmetic operations
-    } else if ( strcmp(opcode,"ADD" ) == 0 ) { word |= 0x2000000000000000;
-    } else if ( strcmp(opcode,"ADDi") == 0 ) { word |= 0x2000020000000000;
-    } else if ( strcmp(opcode,"MLT" ) == 0 ) { word |= 0x2000040000000000;
-    } else if ( strcmp(opcode,"MLTi") == 0 ) { word |= 0x2000060000000000;
-    } else if ( strcmp(opcode,"SUB" ) == 0 ) { word |= 0x2000080000000000;
-    } else if ( strcmp(opcode,"SUBi") == 0 ) { word |= 0x20000A0000000000;
-    } else if ( strcmp(opcode,"DIV" ) == 0 ) { word |= 0x20000C0000000000;
-    } else if ( strcmp(opcode,"DIVi") == 0 ) { word |= 0x20000E0000000000;
-    } else if ( strcmp(opcode,"MOD" ) == 0 ) { word |= 0x2000100000000000;
-    } else if ( strcmp(opcode,"MODi") == 0 ) { word |= 0x2000120000000000;
+    } else if ( strcmp(opcode,"ADD" ) == 0 ) { word |= 0x1000000000000000;
+    } else if ( strcmp(opcode,"ADDi") == 0 ) { word |= 0x1000100000000000;
+    } else if ( strcmp(opcode,"MLT" ) == 0 ) { word |= 0x1000200000000000;
+    } else if ( strcmp(opcode,"MLTi") == 0 ) { word |= 0x1000300000000000;
+    } else if ( strcmp(opcode,"SUB" ) == 0 ) { word |= 0x1000400000000000;
+    } else if ( strcmp(opcode,"SUBi") == 0 ) { word |= 0x1000500000000000;
+    } else if ( strcmp(opcode,"DIV" ) == 0 ) { word |= 0x1000600000000000;
+    } else if ( strcmp(opcode,"DIVi") == 0 ) { word |= 0x1000700000000000;
+    } else if ( strcmp(opcode,"MOD" ) == 0 ) { word |= 0x1000800000000000;
+    } else if ( strcmp(opcode,"MODi") == 0 ) { word |= 0x1000900000000000;
     // Logical operations
-    } else if ( strcmp(opcode,"AND" ) == 0 ) { word |= 0x4000000000000000;
-    } else if ( strcmp(opcode,"ANDi") == 0 ) { word |= 0x4000020000000000;
-    } else if ( strcmp(opcode,"OR"  ) == 0 ) { word |= 0x4000040000000000;
-    } else if ( strcmp(opcode,"ORi" ) == 0 ) { word |= 0x4000060000000000;
-    } else if ( strcmp(opcode,"XOR" ) == 0 ) { word |= 0x4000080000000000;
-    } else if ( strcmp(opcode,"XORi") == 0 ) { word |= 0x40000A0000000000;
-    } else if ( strcmp(opcode,"NOT" ) == 0 ) { word |= 0x40000C0000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"NOTi") == 0 ) { word |= 0x40000E0000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"AND" ) == 0 ) { word |= 0x2000000000000000;
+    } else if ( strcmp(opcode,"ANDi") == 0 ) { word |= 0x2000100000000000;
+    } else if ( strcmp(opcode,"OR"  ) == 0 ) { word |= 0x2000200000000000;
+    } else if ( strcmp(opcode,"ORi" ) == 0 ) { word |= 0x2000300000000000;
+    } else if ( strcmp(opcode,"XOR" ) == 0 ) { word |= 0x2000400000000000;
+    } else if ( strcmp(opcode,"XORi") == 0 ) { word |= 0x2000500000000000;
+    } else if ( strcmp(opcode,"NOT" ) == 0 ) { word |= 0x2000600000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"NOTi") == 0 ) { word |= 0x2000700000000000; operandCnt = 2;
     // Load & Store
-    } else if ( strcmp(opcode,"LD" ) == 0 ) { word |= 0x6000000000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"LDi") == 0 ) { word |= 0x6000020000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"ST" ) == 0 ) { word |= 0x6000040000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"STi") == 0 ) { word |= 0x6000060000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"LD"  ) == 0 ) { word |= 0x3000000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"LDi" ) == 0 ) { word |= 0x3000100000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"ST"  ) == 0 ) { word |= 0x3000200000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"STi" ) == 0 ) { word |= 0x3000300000000000; operandCnt = 2;
     // Jamp
-    } else if ( strcmp(opcode,"JMP" ) == 0 ) { word |= 0x8000000000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"JMPi") == 0 ) { word |= 0x8000020000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x8000040000000000;
-    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x8000060000000000;
-    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x8000080000000000;
-    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x80000A0000000000;
-    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x80000C0000000000;
-    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x80000E0000000000;
+    } else if ( strcmp(opcode,"JMP" ) == 0 ) { word |= 0x4000000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JMPi") == 0 ) { word |= 0x4000100000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x4000200000000000;
+    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x4000300000000000;
+    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x4000400000000000;
+    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x4000500000000000;
+    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x4000600000000000;
+    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x4000700000000000;
     // other operations
     } else if ( strcmp(opcode,"HLT" ) == 0 ) { word |= 0x0000000000000000; operandCnt = 0;
-    } else if ( strcmp(opcode,"HLTi") == 0 ) { word |= 0x0000020000000000; operandCnt = 0;
-    } else if ( strcmp(opcode,"NOP" ) == 0 ) { word |= 0x0000040000000000; operandCnt = 0;
-    } else if ( strcmp(opcode,"NOPi") == 0 ) { word |= 0x0000060000000000; operandCnt = 0;
+    } else if ( strcmp(opcode,"HLTi") == 0 ) { word |= 0x0000100000000000; operandCnt = 0;
+    } else if ( strcmp(opcode,"NOP" ) == 0 ) { word |= 0x0000200000000000; operandCnt = 0;
+    } else if ( strcmp(opcode,"NOPi") == 0 ) { word |= 0x0000300000000000; operandCnt = 0;
     // if other, something wrong
     } else {
       fprintf(stderr,"Invalid opcode %s\n",buff);
@@ -107,16 +107,16 @@ int interpreter_main ( char *fname ) {
     if ( operandCnt == 2 ) {
       z = y;
       y = x;
-      x = 7;
+      x = 15;
     }
     // if immediate value used
-    if ( word & 0x0000020000000000 ) {
+    if ( word & 0x0000100000000000 ) {
       word |= y & 0xFFFFFFFF;
-      y = 7;
+      y = 15;
     } 
-    word |= ((uint64_t)x&0x07)<<38;
-    word |= ((uint64_t)y&0x07)<<35;
-    word |= ((uint64_t)z&0x07)<<32;
+    word |= ((uint64_t)x&0x0F)<<40;
+    word |= ((uint64_t)y&0x0F)<<36;
+    word |= ((uint64_t)z&0x0F)<<32;
 #ifndef NDEBUG
     fprintf(stderr,"[DEBUG]operandCnt=%d\n",operandCnt);
     fprintf(stderr,"[DEBUG]memory[%d]=%016lX\n",i,word);

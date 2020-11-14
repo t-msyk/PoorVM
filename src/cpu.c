@@ -47,11 +47,11 @@ static void fetch ( void ) {
 }
 
 static void decode ( void ) {
-  uint32_t opcode = ( cpu->sr.ir >> 42 ) & 0x003FFFFF;
-  uint32_t immediateFlag = ( cpu->sr.ir >> 41 ) & 0x01;
-  uint32_t rx = ( cpu->sr.ir >> 38 ) & 0x07;
-  uint32_t ry = ( cpu->sr.ir >> 35 ) & 0x07;
-  uint32_t rz = ( cpu->sr.ir >> 32 ) & 0x07;
+  uint32_t opcode = ( cpu->sr.ir >> 45 ) & 0x0003FFFF;
+  uint32_t immediateFlag = ( cpu->sr.ir >> 44 ) & 0x01;
+  uint32_t rx = ( cpu->sr.ir >> 40 ) & 0x0F;
+  uint32_t ry = ( cpu->sr.ir >> 36 ) & 0x0F;
+  uint32_t rz = ( cpu->sr.ir >> 32 ) & 0x0F;
   uint32_t immediateValue = cpu->sr.ir & 0xFFFFFFFF;
   B = cpu->gr[rx];
   A = cpu->gr[ry];
@@ -65,7 +65,7 @@ static void decode ( void ) {
   fprintf(stderr,"[DEBUG]opcode=%08X\n",opcode);
   fprintf(stderr,"[DEBUG]immediateFlag=%d\n",immediateFlag);
   fprintf(stderr,"[DEBUG]immediateValue=%08X\n",immediateValue);
-  for ( i=0; i<8; i++ ) {
+  for ( i=0; i<16; i++ ) {
     fprintf(stderr,"[DEBUG]gr[%d]=%08X,@%p\n",i,cpu->gr[i],&(cpu->gr[i]));
   }
   fprintf(stderr,"[DEBUG]rx=%04X\n",rx);
@@ -78,24 +78,24 @@ static void decode ( void ) {
 #endif
   switch ( opcode ) {
     // Arithmetic operations
-    case 0x00080000 : operation = add; break;
-    case 0x00080001 : operation = mlt; break;
-    case 0x00080002 : operation = sub; break;
-    case 0x00080003 : operation = div; break;
-    case 0x00080004 : operation = mod; break;
+    case 0x00008000 : operation = add; break;
+    case 0x00008001 : operation = mlt; break;
+    case 0x00008002 : operation = sub; break;
+    case 0x00008003 : operation = div; break;
+    case 0x00008004 : operation = mod; break;
     // Logical operations
-    case 0x00100000 : operation = and; break;
-    case 0x00100001 : operation = or;  break;
-    case 0x00100002 : operation = xor; break;
-    case 0x00100003 : operation = not; break;
+    case 0x00010000 : operation = and; break;
+    case 0x00010001 : operation = or;  break;
+    case 0x00010002 : operation = xor; break;
+    case 0x00010003 : operation = not; break;
     // Load & Store
-    case 0x00180000 : operation = ld;  break;
-    case 0x00180001 : operation = st;  break;
+    case 0x00018000 : operation = ld;  break;
+    case 0x00018001 : operation = st;  break;
     // Jamp
-    case 0x00200000 : operation = jmp; break;
-    case 0x00200001 : operation = jpz; break;
-    case 0x00200002 : operation = jpp; break;
-    case 0x00200003 : operation = jpn; break;
+    case 0x00020000 : operation = jmp; break;
+    case 0x00020001 : operation = jpz; break;
+    case 0x00020002 : operation = jpp; break;
+    case 0x00020003 : operation = jpn; break;
     // other operations
     case 0x00000000 : operation = hlt; break;
     case 0x00000001 : operation = nop; break;
