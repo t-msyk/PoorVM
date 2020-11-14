@@ -13,6 +13,7 @@ typedef union CPU {
   struct {
     uint32_t pc;  // Program Counter         : gr[0]
     uint64_t ir; // Instruction Register     : gr[1-2]
+    uint32_t reserved; // gr[3]
   } sr; // special (porpose) register
 } CPU;
 
@@ -80,8 +81,8 @@ void cpu_main ( void );
  *    100...001 : jump if zero     (JPZ) / Binary Operation
  *    100...010 : jump if positive (JPP) / Binary Operation
  *    100...011 : jump if negative (JPN) / Binary Operation
- *      Jamp to RX register's value address ( or immediate value address ),
- *      if RY register is zero/positive/negative.
+ *      Jamp to RY register's value address ( or immediate value address ),
+ *      if RX register is zero/positive/negative.
  *
  *    # other operations ( All operand is ignored )
  *    000...000 : halt       (HLT) / Binary Operation

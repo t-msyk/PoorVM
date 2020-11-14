@@ -4,22 +4,42 @@
 
 #include"cpu.h"
 #include"memory.h"
+#include"interpreter.h"
 
 // Bus variables
-uint64_t *dBus; // data bus
-uint32_t *aBus; // address bus
-uint8_t  *rw; // Read(0) or Write(1)
+uint64_t *dBus = NULL; // data bus
+uint32_t *aBus = NULL; // address bus
+uint8_t  *rw   = NULL; // Read(0) or Write(1)
 
-Memory *memory;
-CPU    *cpu;
+Memory *memory = NULL;
+CPU    *cpu    = NULL;
+
+int allocate_resource ( void ) {
+  dBus = (uint64_t*) malloc ( sizeof(uint64_t) );
+  aBus = (uint32_t*) malloc ( sizeof(uint32_t) );
+  rw   = (uint8_t* ) malloc ( sizeof(uint8_t ) );
+  memory = (Memory*) malloc ( sizeof(Memory) + sizeof(uint64_t)*1024 );
+  cpu    = (CPU*)    malloc ( sizeof(CPU) );
+  return 0;
+}
+
+int free_resource ( void ) {
+  free(dBus);  dBus = NULL;
+  free(aBus);  aBus = NULL;
+  free(rw  );  rw   = NULL;
+  free(memory); memory = NULL;
+  free(cpu   ); cpu    = NULL;
+  return 0;
+}
 
 int main ( int argc, char *argv[] ) {
   int i;
-  memory = (Memory*) malloc ( sizeof(Memory) + sizeof(uint64_t)*1024 );
-  cpu    = (CPU*)    malloc ( sizeof(CPU) );
+  allocate_resource();
   for ( i=1; i<argc; i++ ) {
     interpreter_main(argv[i]);
+    cpu->sr.pc = 0;
     cpu_main();
   }
+  free_resource();
   return 0;
 }

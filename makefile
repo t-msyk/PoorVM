@@ -37,4 +37,6 @@ echo:
 	@echo $(CXX) $(CFLAGS) $(COBJS) $(CXXOBJS) -o $@ $(LDFLAGS)
 
 clean:
-	$(RM) $(TARGETT) $(COBJS) $(CXXOBJS)
+	$(RM) $(TARGET) $(COBJS) $(CXXOBJS)
+
+remake: clean $(TARGET);
