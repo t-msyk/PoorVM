@@ -8,14 +8,17 @@ extern uint64_t *dBus; // data bus
 extern uint32_t *aBus; // address bus
 extern uint8_t  *rw; // Read(0) or Write(1)
 
+#pragma pack(push)
+#pragma pack(1)
 typedef union CPU {
   uint32_t gr[16];       // general (porpose) register
   struct {
-    uint32_t pc;  // Program Counter         : gr[0]
-    uint64_t ir; // Instruction Register     : gr[1-2]
+    uint32_t pc:32;  // Program Counter         : gr[0]
+    uint64_t ir:64; // Instruction Register     : gr[1-2]
     uint32_t reserved[13]; // gr[3-15]
   } sr; // special (porpose) register
 } CPU;
+#pragma pack(pop)
 
 void cpu_main ( void );
 
