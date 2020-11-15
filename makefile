@@ -5,9 +5,9 @@ TARGET = main
 LDFLAGS = -lm -lpthread
 
 INCLUDE =
-DEFINE  =
+DEFINE  = -D NDEBUG
 
-CFLAGS  = $(INCLUDE) -Wall -O2 $(DEFINE)
+CFLAGS  = $(INCLUDE) -Wall -O2 -g3 $(DEFINE)
 CXXFLAGS  = -std=c++11 $(INCLUDE) -Wall -O2 $(DEFINE)
 
 SRC = src

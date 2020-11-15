@@ -18,8 +18,8 @@ int allocate_resource ( void ) {
   dBus = (uint64_t*) malloc ( sizeof(uint64_t) );
   aBus = (uint32_t*) malloc ( sizeof(uint32_t) );
   rw   = (uint8_t* ) malloc ( sizeof(uint8_t ) );
-  memory = (Memory*) malloc ( sizeof(Memory) + sizeof(uint64_t)*1024 );
-  cpu    = (CPU*)    malloc ( sizeof(CPU) );
+  memory_allocate(1024);
+  cpu_allocate();
   return 0;
 }
 
@@ -27,8 +27,8 @@ int free_resource ( void ) {
   free(dBus);  dBus = NULL;
   free(aBus);  aBus = NULL;
   free(rw  );  rw   = NULL;
-  free(memory); memory = NULL;
-  free(cpu   ); cpu    = NULL;
+  memory_free();
+  cpu_free();
   return 0;
 }
 

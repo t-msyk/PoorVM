@@ -9,29 +9,31 @@ So I create poor and naive architecture virtual machine in this repository.
 ## Decode Rule
 
 ```
-b0 b1 ... b18 b19 b20 ... b23 b24 ... b27 b28 ... b31 b32 b33 ... b63
-------------- --- ----------- ----------- ----------- ---------------
-^             ^   ^           ^           ^           ^
-|             |   |           |           |           |
-|             |   |           |           |           +- immediate value.
-|             |   |           |           |              If immediate value is not used,
-|             |   |           |           |              this field is ignored.
-|             |   |           |           |
-|             |   |           |           +- register specification.(RZ)
-|             |   |           |              Show operation code explain bellow.
-|             |   |           |
-|             |   |           +- register specification.(RY)
-|             |   |              Show operation code explain bellow.
-|             |   |
-|             |   +- register specification.(RX)
-|             |     Show operation code explain bellow.
+b0 b1 ... b15 b16 b17 b18 b19 b20 ... b23 b24 ... b27 b28 ... b31 b32 b33 ... b63
+------------- ----------- --- ----------- ----------- ----------- ---------------
+^             ^           ^   ^           ^           ^           ^
+|             |           |   |           |           |           |
+|             |           |   |           |           |           +- immediate value.
+|             |           |   |           |           |              If immediate value is not used,
+|             |           |   |           |           |              this field is ignored.
+|             |           |   |           |           |
+|             |           |   |           |           +- register specification.(RZ)
+|             |           |   |           |              Show operation code explain bellow.
+|             |           |   |           |
+|             |           |   |           +- register specification.(RY)
+|             |           |   |              Show operation code explain bellow.
+|             |           |   |
+|             |           |   +- register specification.(RX)
+|             |           |     Show operation code explain bellow.
+|             |           |
+|             |           +- immediate value used flag.
+|             |              If operation use immediate value,
+|             |              this field is 1, else (=not used) this field is 0
+|             |              If this field is 1, use immediate instead of RY;
+|             |              If this field is 1, then add 'i' to mnemonic period.
+|             |              For example, Add -> Addi, LD -> LDi.
 |             |
-|             +- immediate value used flag.
-|                If operation use immediate value,
-|                this field is 1, else (=not used) this field is 0
-|                If this field is 1, use immediate instead of RY;
-|                If this field is 1, then add 'i' to mnemonic period.
-|                For example, Add -> Addi, LD -> LDi.
+|             +- unused field.
 |
 +- operation code
    operate (RX and) RY, then store result to RZ register.
@@ -74,4 +76,5 @@ b0 b1 ... b18 b19 b20 ... b23 b24 ... b27 b28 ... b31 b32 b33 ... b63
    - other operations ( All operand is ignored )
      + 0000...0000 : halt       (HLT) / Binary Operation
      + 0000...0001 : no process (NOP) / Binary Operation
+
 

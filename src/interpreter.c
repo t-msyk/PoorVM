@@ -52,42 +52,42 @@ int interpreter_main ( char *fname ) {
     // Arithmetic operations
     } else if ( strcmp(opcode,"ADD" ) == 0 ) { word |= 0x1000000000000000;
     } else if ( strcmp(opcode,"ADDi") == 0 ) { word |= 0x1000100000000000;
-    } else if ( strcmp(opcode,"MLT" ) == 0 ) { word |= 0x1000200000000000;
-    } else if ( strcmp(opcode,"MLTi") == 0 ) { word |= 0x1000300000000000;
-    } else if ( strcmp(opcode,"SUB" ) == 0 ) { word |= 0x1000400000000000;
-    } else if ( strcmp(opcode,"SUBi") == 0 ) { word |= 0x1000500000000000;
-    } else if ( strcmp(opcode,"DIV" ) == 0 ) { word |= 0x1000600000000000;
-    } else if ( strcmp(opcode,"DIVi") == 0 ) { word |= 0x1000700000000000;
-    } else if ( strcmp(opcode,"MOD" ) == 0 ) { word |= 0x1000800000000000;
-    } else if ( strcmp(opcode,"MODi") == 0 ) { word |= 0x1000900000000000;
+    } else if ( strcmp(opcode,"MLT" ) == 0 ) { word |= 0x1001000000000000;
+    } else if ( strcmp(opcode,"MLTi") == 0 ) { word |= 0x1001100000000000;
+    } else if ( strcmp(opcode,"SUB" ) == 0 ) { word |= 0x1002000000000000;
+    } else if ( strcmp(opcode,"SUBi") == 0 ) { word |= 0x1002100000000000;
+    } else if ( strcmp(opcode,"DIV" ) == 0 ) { word |= 0x1003000000000000;
+    } else if ( strcmp(opcode,"DIVi") == 0 ) { word |= 0x1003100000000000;
+    } else if ( strcmp(opcode,"MOD" ) == 0 ) { word |= 0x1004000000000000;
+    } else if ( strcmp(opcode,"MODi") == 0 ) { word |= 0x1004100000000000;
     // Logical operations
     } else if ( strcmp(opcode,"AND" ) == 0 ) { word |= 0x2000000000000000;
     } else if ( strcmp(opcode,"ANDi") == 0 ) { word |= 0x2000100000000000;
-    } else if ( strcmp(opcode,"OR"  ) == 0 ) { word |= 0x2000200000000000;
-    } else if ( strcmp(opcode,"ORi" ) == 0 ) { word |= 0x2000300000000000;
-    } else if ( strcmp(opcode,"XOR" ) == 0 ) { word |= 0x2000400000000000;
-    } else if ( strcmp(opcode,"XORi") == 0 ) { word |= 0x2000500000000000;
-    } else if ( strcmp(opcode,"NOT" ) == 0 ) { word |= 0x2000600000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"NOTi") == 0 ) { word |= 0x2000700000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"OR"  ) == 0 ) { word |= 0x2001000000000000;
+    } else if ( strcmp(opcode,"ORi" ) == 0 ) { word |= 0x2001100000000000;
+    } else if ( strcmp(opcode,"XOR" ) == 0 ) { word |= 0x2002000000000000;
+    } else if ( strcmp(opcode,"XORi") == 0 ) { word |= 0x2002100000000000;
+    } else if ( strcmp(opcode,"NOT" ) == 0 ) { word |= 0x2003000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"NOTi") == 0 ) { word |= 0x2003100000000000; operandCnt = 2;
     // Load & Store
     } else if ( strcmp(opcode,"LD"  ) == 0 ) { word |= 0x3000000000000000; operandCnt = 2;
     } else if ( strcmp(opcode,"LDi" ) == 0 ) { word |= 0x3000100000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"ST"  ) == 0 ) { word |= 0x3000200000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"STi" ) == 0 ) { word |= 0x3000300000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"ST"  ) == 0 ) { word |= 0x3001000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"STi" ) == 0 ) { word |= 0x3001100000000000; operandCnt = 2;
     // Jamp
     } else if ( strcmp(opcode,"JMP" ) == 0 ) { word |= 0x4000000000000000; operandCnt = 2;
     } else if ( strcmp(opcode,"JMPi") == 0 ) { word |= 0x4000100000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x4000200000000000;
-    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x4000300000000000;
-    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x4000400000000000;
-    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x4000500000000000;
-    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x4000600000000000;
-    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x4000700000000000;
+    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x4001000000000000;
+    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x4001100000000000;
+    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x4002000000000000;
+    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x4002100000000000;
+    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x4003000000000000;
+    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x4003100000000000;
     // other operations
     } else if ( strcmp(opcode,"HLT" ) == 0 ) { word |= 0x0000000000000000; operandCnt = 0;
     } else if ( strcmp(opcode,"HLTi") == 0 ) { word |= 0x0000100000000000; operandCnt = 0;
-    } else if ( strcmp(opcode,"NOP" ) == 0 ) { word |= 0x0000200000000000; operandCnt = 0;
-    } else if ( strcmp(opcode,"NOPi") == 0 ) { word |= 0x0000300000000000; operandCnt = 0;
+    } else if ( strcmp(opcode,"NOP" ) == 0 ) { word |= 0x0001000000000000; operandCnt = 0;
+    } else if ( strcmp(opcode,"NOPi") == 0 ) { word |= 0x0001100000000000; operandCnt = 0;
     // if other, something wrong
     } else {
       fprintf(stderr,"Invalid opcode %s\n",buff);
