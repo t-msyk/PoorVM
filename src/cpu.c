@@ -112,8 +112,18 @@ static void decode ( void ) {
   }
 }
 
-static void execute ( void ) {
+static void print_register ( void ) {
+  int i;
   printf("IR=%016lX\n",cpu->sr.ir);
+  printf("PC=%016X\n",cpu->sr.pc);
+  for ( i=0 ;i<16; i++ ) {
+    printf("GR[%d]=%016X\n",i,cpu->gr[i]);
+  }
+}
+
+static void execute ( void ) {
+  getchar();
+  print_register();
   operation(&A,&B,Y);
   printf("A=%016X B=%016X Y=%016X\n",A,B,*Y);
 }

@@ -37,13 +37,10 @@ int interpreter_main ( char *fname ) {
     fflush(stderr);
 #endif
     error_number = errno;
-    // if error
+    // if blank line, then skip
     if ( n < 1 ) {
-      fprintf(stderr,"sscanf failed.(str=%s)\n",buff);
-      fprintf(stderr,"Error string : %s.\n",strerror(error_number));
-      fprintf(stderr,"This error occer in FILE=%s,FUNCTION=%s,LINE=%d\n",__FILE__,__func__,__LINE__);
-      fclose(fp);
-      return 1;
+      i++;
+      continue;
     // immidiate values
     } else if ( strncmp(opcode,"0x",2) == 0 ) {
       sscanf(opcode,"%lX",&word);
@@ -75,14 +72,14 @@ int interpreter_main ( char *fname ) {
     } else if ( strcmp(opcode,"ST"  ) == 0 ) { word |= 0x3001000000000000; operandCnt = 2;
     } else if ( strcmp(opcode,"STi" ) == 0 ) { word |= 0x3001100000000000; operandCnt = 2;
     // Jamp
-    } else if ( strcmp(opcode,"JMP" ) == 0 ) { word |= 0x4000000000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"JMPi") == 0 ) { word |= 0x4000100000000000; operandCnt = 2;
-    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x4001000000000000;
-    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x4001100000000000;
-    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x4002000000000000;
-    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x4002100000000000;
-    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x4003000000000000;
-    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x4003100000000000;
+    } else if ( strcmp(opcode,"JMP" ) == 0 ) { word |= 0x4000000000000000; operandCnt = 1;
+    } else if ( strcmp(opcode,"JMPi") == 0 ) { word |= 0x4000100000000000; operandCnt = 1;
+    } else if ( strcmp(opcode,"JPZ" ) == 0 ) { word |= 0x4001000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPZi") == 0 ) { word |= 0x4001100000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPP" ) == 0 ) { word |= 0x4002000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPPi") == 0 ) { word |= 0x4002100000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPN" ) == 0 ) { word |= 0x4003000000000000; operandCnt = 2;
+    } else if ( strcmp(opcode,"JPNi") == 0 ) { word |= 0x4003100000000000; operandCnt = 2;
     // other operations
     } else if ( strcmp(opcode,"HLT" ) == 0 ) { word |= 0x0000000000000000; operandCnt = 0;
     } else if ( strcmp(opcode,"HLTi") == 0 ) { word |= 0x0000100000000000; operandCnt = 0;
@@ -104,7 +101,7 @@ int interpreter_main ( char *fname ) {
       return 1;
     }
     // if unary operation
-    if ( operandCnt == 2 ) {
+    if ( operandCnt <= 2 ) {
       z = y;
       y = x;
       x = 15;
